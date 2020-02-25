@@ -1,0 +1,23 @@
+* 加速github项目下载的方法  
+1.直接手动把CDN和ip地址绑定
+获取global.ssl.fastly地址  在IPAddress.com网站中查询
+访问本地IP:122.194.0.190  
+搜索得github.global.ssl.fastly.net的IP地址：199.232.5.194
+获取github地址 140.82.114.3
+打开host映射
+windows系统是在：C:\windows\system32\drivers\etc\hosts
+打开host文件，并在最末尾添加两句话  
+199.232.5.194 http://github.global.ssl.fastly.net  
+140.82.114.3 http://github.com
+保存退出
+运行命令行Win+R 
+在命令行中输入：ipconfig/flushdns再回车
+linux系统hosts
+sudo gedit /etc/hosts
+添加内容同windows系统
+保存退出，并重启网络
+/etc/init.d/networking restart
+
+* 设置pycharm默认浏览器
+在settings中Tools下选择web browser勾选浏览器。
+并在下方default brouser选custom path将选择的浏览器.exe地址写入。（在对应浏览器右键属性中找到对应地址）
