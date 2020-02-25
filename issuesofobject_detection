@@ -1,0 +1,56 @@
+* 安装slim下的setup.py文件，`setup.py install`
+* 将object_detection/protos下所有的.proto文件全部转化成py文件
+先确认电脑里是否有protobuf、protoc，在命令窗口输入：protobuf --version
+protoc --version如果有显示版本则说明已安装  
+如果没安装可以使用pip install protobuf安装
+* 进行protobuf配置，终端进入models/research
+protoc object_detection/protos/*.proto --python_out=.
+* windows的cmd命令窗口切换路径，不同盘之间切换直接输入某盘，比如： D： 就切换至对应盘下再使用cd切到子路径
+* 批量运行python文件
+windows下：
+新建一个文本文件，
+输入
+F:
+cd F:\models  #先定位到py程序目录下。  
+python ×××.py #运行py程序  
+然后保存为.bat文件  
+点击.bat文件就能运行python程序了。  
+如果python需要参数输入，bat语法是python ×××.py 参数1 参数2  
+对应python程序中，使用sys.argv[]来保存参数，其中第一个参数是python的文件名，即 ×××.py
+后面才是要输入的参数。
+Linux和Mac的批处理文件与Windows语法一致，但是后缀名称是 .sh而不是 .bat  
+* python获取文件夹中所有文件
+os.walk() 和os.listdir()
+os.walk()遍历指定文件下所有的子目录、非目录子文件
+os.listdir()返回指定的文件夹下包含的文件或文件夹名字的列表，这个列表按字母顺序排序
+os.name #显示当前使用平台
+os.getcwd()#显示当前python脚本工作路径
+os.listdir('dirname')#返回指定目录下的所有文件和目录名
+os.remove('fiename')#删除一个文件
+os.makedirs('dirname/dirname')#生成多层递归目录
+os.rmdir('dirname')#删除单极目录
+os.rename('oldname','newname')#重命名文件
+os.system()#运行shell命令注意，这里是打开一个新的shell，运行命令，命令结束后关闭shell
+os.sep#显示当前平台下路径分隔符
+os.linesep#给出当前平台使用的行终止符
+os.environ #获取系统环境变量
+os.path.abspath(path)#显示当前绝对路径
+os.path.dirname(path) #返回该路径的父目录
+os.path.basename(path)#返回该路径的最后一个目录或者文件，如果path以/或\结尾，返回空值
+os.path.isfile(path)#如果path是一个文件，返回True
+os.path.isdir(path)#如果path是一个目录。返回True
+os.stat()#获取文件或者目录信息
+os.path.split(path) #将path分割成路径名和文件名
+os.path.join(path,name)#连接目录与文件名或目录 结果为path/name
+* pycharm中无法选择复制粘贴
+settings->editor->vim->将CRTL+C CTRL+V后面选择IDE
+* 批量处理proto转换成py文件
+```buildoutcfg
+@echo off
+for %%i in (*.proto) do (
+    protoc --python_out=. %%i
+    echo From %%i To %%~ni.py Successfully)
+
+pause
+```
+问题是还剩下一些proto文件转换失败

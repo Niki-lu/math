@@ -1,0 +1,9 @@
+import math
+
+def fortune(factorperyear, increaseperyear,years):
+    fortunes=0
+    for i in range(years):
+        fortunes=fortunes*increaseperyear
+        fortunes = fortunes + factorperyear
+    return fortunes
+print(str(fortune(5,1.2,20)))
