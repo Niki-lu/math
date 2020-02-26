@@ -54,3 +54,73 @@ for %%i in (*.proto) do (
 pause
 ```
 问题是还剩下一些proto文件转换失败
+因为必须在research目录下运行
+protoc object_detection/protos/*.proto
+否则会出现错误
+* 安装object_detection API
+其源码位置为：https://github.com/tensorflow/models
+git clone git@github.com:tensorflow/models.git
+可查阅object_detection/g2doc/installation
+安装tensorflow
+pip install tensorflow
+pip install tensorflow-gpu
+安装tensorflow依赖库
+```buildoutcfg
+pip install Cpython
+pip install contextlib1
+pip install pillow
+pip install lxml
+pip install jupyter
+pip install matplotlib
+```
+object_detection API使用Protobuf来配置模型和训练参数。
+因此需要编译protobuf依赖包。
+安装protoc
+pip install protobuf
+编译protobuf依赖包
+切换到models/research目录下
+`protoc object_detection/protos/*.proto`
+在widnows下处出现错误：
+object_detection/protos/*.proto:No such file or directory 这个问题是object_detection Module的一个bug，
+说明如下：
+```text
+This is a typical bug of the object_detection
+ module working in windows.Here are detailed 
+discussion #1591.Asolution is to compile those.
+proto files one by one.you can write a batch to
+ run.
+```
+于是一个一个运行
+`protoc object_detection\protos\train.proto --python_out=.`
+注意：  
+运行上面命令时，不要在protos目录编译，在research目录下运行，否则会有
+文件依赖相关的错误。网上编译好的protos文件不能直接使用，
+可能出现版本匹配问题。
+* 为依赖包添加环境变量
+将models\research和models\research\slim添加环境变量
+1. 函数添加
+```text
+import sys
+sys.path.append('C:\\')
+```
+需要改启动脚本
+2. 修改环境变量
+修改环境变量PYTHONPATH,
+3. 添加.pth文件
+在site-packages 添加一个路径文件，例如niki.pth,该文件必须
+以.pth为后缀，在文件里写上指定访问的python库位置，如下：
+绝对地址：
+×××\models\research\
+×××\models\research\slim
+
+* 安装完成后进行测试
+python object_detection/builders/model_builder_test.py
+正常会显示OK
+
+
+
+* 在命令行中为python添加环境变量linux系统中
+例如把tensorflow
+export PYTHONPATH=$PYTHONPATH:'pwd':'pwd'/slim
+
+
