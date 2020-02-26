@@ -121,6 +121,16 @@ python object_detection/builders/model_builder_test.py
 
 * 在命令行中为python添加环境变量linux系统中
 例如把tensorflow
-export PYTHONPATH=$PYTHONPATH:'pwd':'pwd'/slim
+export PYTHONPATH=$PYTHONPATH:'pwd':'pwd'
 
-
+安装完测试research/object_detection/builders/model_build_test.py
+在pycharm中运行一直出现如下错误：
+NonModelError:cannot find model named absl.testing
+使用
+pip install absl-py
+或
+pip3 install absl-py都没有用。
+发现安装只安装到anaconda下的python中，而我使用的是单独安装的python
+，可以直接下载absl-py.gz然后在python安装目录下
+python 
+[参考文章](https://packaging.python.org/tutorials/installing-packages/)
