@@ -134,3 +134,4 @@ pip3 install absl-py都没有用。
 ，可以直接下载absl-py.gz然后在python安装目录下
 python 
 [参考文章](https://packaging.python.org/tutorials/installing-packages/)
+[tensorflow解释文档](https://tensorflow.google.cn/api_docs/python/tf/estimator/Estimator?hl=zh-cn)
