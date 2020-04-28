@@ -1,0 +1,6 @@
+### 摘要
+现在有大量特征用于提高CNN的精确度，本文结合这些特征在大数据集上进行试验，并对结果进行理论论证。有些特征范用于大部分问题，比如batch-normalization 和resudual-connections。。而有些特征则只能适用于特定问题或小规模数据集。
+假定以下这些特征也适用于广泛应用，Weighted=Residual-Connections(WRC),Cross-Stage-Partial-connections(CSP),Cross mini-bACTH Normalization(CmBN),Self-adversarial-training(SAT) and Mish-activation，我们使用这些新特征：WRC,CSP,CmBN，SAT,Mish activation,Mosaic data augmentation,CmBN,SA,DropBlock tegularization 和CIoU loss,结合这些中的一些达到最优结果，在Tesla V100上使用MS COCO数据集上，实时速度~65FPS43.5%AP(65.7% AP<sub>50</sub>)，[源码](https://github.com/AlexeyAB/darknet) 。
+### 引言
+大部分的基于CNN的物体检测大部分只是用于推荐系统，比如，通过市区相机寻找免费停车场要求高精度可以低速度吗，车辆警告系统要求高速度可以低精度。提高实时物体检测精度能够使这些目标检测不只是用于推荐系统，也可以用于过程管理系统减少人的输入决策。实时物体检测操作在GPU的基础上可接受价格范围内有大量的应用。精确度最高的神经网络不能实时运行和需要大量GPU使用大的mini-batch-size去训练。本文目的是为了提出一个可以试试在一个GPU上运行，可以在一个GPU上训练的CNN，即YOLO v4。
+![image](https://)
